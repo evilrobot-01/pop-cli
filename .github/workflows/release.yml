@@ -28,6 +28,8 @@ jobs:
           # macOS
           - os: macos-14
             target: aarch64-apple-darwin
+          - os: macos-14
+            target: x86_64-apple-darwin
     env:
       RUSTFLAGS: >-
         ${{ matrix.platform.cpu != '' && format('-C target-cpu={0}', matrix.platform.cpu) || '' }}
