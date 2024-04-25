@@ -65,12 +65,12 @@ jobs:
       - name: Build pop-cli
         run: cargo build --profile=production -p pop-cli --target ${{ matrix.platform.target }}
 
-      - name: Package binary (Linux)
-        if: contains(matrix.platform.target, 'linux')
-        run: |
-          cd ${{ env.path }}
-          sha256sum pop-cli > pop-cli.sha256
-          tar -czf ${{ env.package }} pop-cli pop-cli.sha256
+      # - name: Package binary (Linux)
+      #   if: contains(matrix.platform.target, 'linux')
+      #   run: |
+      #     cd ${{ env.path }}
+      #     sha256sum pop-cli > pop-cli.sha256
+      #     tar -czf ${{ env.package }} pop-cli pop-cli.sha256
 
       - name: Package binary (macOS)
         if: contains(matrix.platform.target, 'apple')
