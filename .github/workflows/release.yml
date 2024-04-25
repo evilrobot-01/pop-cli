@@ -31,6 +31,7 @@ jobs:
           - os: macos-14
             target: x86_64-apple-darwin
     env:
+      PKG_CONFIG_SYSROOT_DIR: /
       RUSTFLAGS: >-
         ${{ matrix.platform.cpu != '' && format('-C target-cpu={0}', matrix.platform.cpu) || '' }}
         ${{ matrix.platform.target == 'aarch64-unknown-linux-gnu' && '-C linker=aarch64-linux-gnu-gcc' || '' }}
@@ -55,8 +56,7 @@ jobs:
       - name: Install packages (macOS)
         if: contains(matrix.platform.target, 'apple')
         run: |
-          brew install openssl
-          brew install protobuf
+          brew install openssl protobuf
           protoc --version
 
       - name: Add target
