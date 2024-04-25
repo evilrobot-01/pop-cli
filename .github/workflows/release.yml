@@ -31,7 +31,6 @@ jobs:
           - os: macos-14
             target: x86_64-apple-darwin
     env:
-      PKG_CONFIG_SYSROOT_DIR: /
       RUSTFLAGS: >-
         ${{ matrix.platform.cpu != '' && format('-C target-cpu={0}', matrix.platform.cpu) || '' }}
         ${{ matrix.platform.target == 'aarch64-unknown-linux-gnu' && '-C linker=aarch64-linux-gnu-gcc' || '' }}
@@ -49,7 +48,7 @@ jobs:
         if: contains(matrix.platform.target, 'linux')
         run: |
           sudo apt update
-          sudo apt install -y cmake libssl-dev git gcc build-essential git clang libclang-dev 
+          sudo apt install -y cmake libssl-dev git gcc build-essential git clang libclang-dev pkg-config-aarch64-linux-gnu
           sudo apt-get install -y protobuf-compiler ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
           protoc --version
 
