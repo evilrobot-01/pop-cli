@@ -47,9 +47,10 @@ jobs:
       - name: Install packages (Linux)
         if: contains(matrix.platform.target, 'linux')
         run: |
+          sudo apt-get install pkg-config
           sudo apt-get install -y protobuf-compiler ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
           protoc --version
-          sudo apt-get install -y libssl-dev pkg-config ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
+          sudo apt-get install -y libssl-dev ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
 
 
       - name: Install packages (macOS)
