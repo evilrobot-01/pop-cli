@@ -48,7 +48,7 @@ jobs:
         if: contains(matrix.platform.target, 'linux')
         run: |
           sudo apt update
-          sudo apt install -y cmake libssl-dev git gcc build-essential git clang libclang-dev pkg-config-aarch64-linux-gnu
+          sudo apt install -y cmake libssl-dev git gcc build-essential git clang libclang-dev pkg-config
           sudo apt-get install -y protobuf-compiler ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
           protoc --version
 
