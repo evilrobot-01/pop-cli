@@ -50,7 +50,7 @@ jobs:
           sudo apt-get install pkg-config
           sudo apt-get install -y protobuf-compiler ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
           protoc --version
-          sudo apt-get install -y libssl-dev ${{ contains(matrix.platform.target, 'aarch64') && 'crossbuild-essential-arm64' || '' }}
+          sudo apt-get install -y ${{ contains(matrix.platform.target, 'aarch64') && 'libssl-dev:arm64' || 'libssl-dev' }}
 
 
       - name: Install packages (macOS)
